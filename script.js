@@ -11,6 +11,11 @@ var first = true;
 
 const startFI3 = 47;
 
+function preloadImages(url) {
+  var img = new Image();
+  img.src = url;
+}
+
 window.onload = function() {
   setTimeout(function() {
     startimage.classList.add("opacity0");
@@ -33,6 +38,16 @@ window.onload = function() {
 
   }
   aboutme.innerHTML=finishedWords;
+  
+  for (let i = 1; i <= 60; i++) {
+    const preImage = "svg/water drop" + pad(i, 4) + ".svg";
+    preloadImages(preImage);
+  }
+  
+  for (let i = 1; i <= 38; i++) {
+    const preImage = "runningMan/rniinung" + pad(i, 4) + ".png";
+    preloadImages(preImage);
+  }
 
   scroll("start");
 }
