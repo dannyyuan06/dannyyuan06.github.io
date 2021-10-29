@@ -1,0 +1,193 @@
+@font-face {
+  font-family: font;
+  src: url(SF-Pro.otf);
+}
+
+body {
+  font-family: font;
+  height: 2000vh;
+  margin: 0;
+  background-color: #56A2E5;
+}
+
+.startback {
+  width: 120vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  z-index: 100;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+
+.opacity0 {
+  opacity: 0;
+}
+
+#backgroundimage {
+  width: 120vw;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  z-index: 0;
+}
+
+
+@keyframes nameAnime {
+  0%, 59% {
+    opacity: 0;
+    font-size: 2px;
+  }
+  86% {
+    font-size: 15vw;
+  }
+  93% {
+    opacity: 0.7;
+    font-size: 13vw;
+  }
+  100% {
+    font-size: 14vw;
+  }
+}
+
+@keyframes smallAnime {
+  0% {
+    opacity: 0;
+    font-size: 2px;
+  }
+  60% {
+    font-size: 2.9vw;
+  }
+  80% {
+    opacity: 0.7;
+    font-size: 3.1vw;
+  }
+  100% {
+    font-size: 3vw;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+
+.lettersanimation {
+  animation: nameAnime 2.5s ease-in-out 0s;
+}
+
+.smallanimation {
+  animation: smallAnime 2s ease-in-out 0s;
+}
+
+.name {
+  position: fixed;
+  color: white;
+  letter-spacing: 6px;
+  font-weight: bold;
+  font-size: 14vw;
+  top: 20%;
+  left: 10%;
+  animation: fadeIn 0.2s ease-out 0.2s;
+}
+
+.name span {
+  opacity: 0.7;
+  transition: font-size 0.2s, transform 0.2s;
+  float: left;
+}
+
+.name span:hover {
+  font-size: 16vw;
+  transform: rotate(4deg);
+}
+
+.name a{
+  text-decoration: none;
+  color: white;
+}
+
+.name br {
+   display: block;
+   margin: 20px 0;
+}
+
+.first {
+  position: fixed;
+  width: 100vw;
+
+}
+
+.last {
+  position: fixed;
+  width: 100vw;
+}
+
+.anime {
+  position: fixed;
+  z-index: 1;
+}
+
+.anime img {
+  width: 100vw;
+  height: 100vh;
+}
+
+.aboutme {
+  position: fixed;
+  color: white;
+  font-size: 3vw;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  transition: opacity 0.2s;
+}
+
+.piano {
+  position: relative;
+  width: 100vw;
+  top: 600vh;
+  z-index: 5;
+}
+
+.black {
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: #0A090B;
+  color: #0A090B;
+  text-align: center;
+  font-size: 34px;
+  bottom: 0;
+  left: 0;
+  transition: background-color 0.6s;
+}
+
+.turnColor {
+  background-color: #a4aded;
+}
+
+
+
+.animeRun {
+  top: 0;
+  left: 0;
+  position: fixed;
+  z-index: -1;
+}
+
+.animeRun img {
+  width: 100vw;
+  height: 100vh;
+}
