@@ -1,5 +1,3 @@
-
-
 var startimage = document.getElementById("startback");
 var onabout = false;
 var aboutme = document.getElementById("aboutme");
@@ -13,7 +11,7 @@ var first = true;
 const startFrameIndex = 5;
 const endFrameIndex = 20;
 const startFI2 = 30;
-const startFI3 = 50;
+const startFI3 = 58;
 const startFI4 = 70;
 
 window.onload = function() {
@@ -260,6 +258,49 @@ function pianoBlack(frameIndex) {
   else {
     black.classList.remove("turnColor");
   }
+/*
+  const topPianoOffset = piano.offsetTop + piano.height;
+  const windowOffset = window.pageYOffset + window.innerHeight;
+  const bottomPianoOffset = windowOffset - topPianoOffset + piano.height/4;
+  console.log(bottomPianoOffset);
+
+  if (bottomPianoOffset >= 0 && bottomPianoOffset <= window.innerHeight) {
+    const blackHeight = bottomPianoOffset;
+    black.style.height = String(blackHeight) + "px";
+    black.style.zIndex = "6";
+    black.classList.remove("turnColor");
+  }
+  else if (bottomPianoOffset < 0){
+    black.style.zIndex = "-1";
+    black.classList.remove("turnColor");
+  }
+  else {
+    black.style.height = "100vh";
+    black.classList.add("turnColor");
+  }
+
+
+  if (frameIndex >= startFI2 + 1 && frameIndex <= startFI2 + 6) {
+    black.style.zIndex = "1";
+    black.style.height = "70vh";
+  }
+  else if (frameIndex > startFI2 + 6) {
+    black.style.zIndex = "6";
+    black.style.height = "100vh";
+  }
+  else {
+    black.style.zIndex = "-1";
+  }
+  */
+
+
+
+  if (frameIndex > startFI2 + 8) {
+
+  }
+  else {
+
+  }
 }
 
 
@@ -319,4 +360,3 @@ function runningManAnimation(frameIndex) {
     console.log(first);
   }
 }
-
