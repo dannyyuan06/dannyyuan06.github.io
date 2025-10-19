@@ -1,0 +1,144 @@
+/* Basic CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Define root colors for easy themeing */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  /* Updated colors for a darker theme like Image 2 */
+  --bg-color: #0d0c1d; /* A dark, slightly purple-blue background */
+  --card-color: #1a1a2e; /* Darker card for contrast */
+  --text-color: #e0e0e0;
+  --text-color-secondary: #a0a0b0;
+  --hover-color: #2c2c47;
+  --accent-color: #bb86fc; /* Still a nice accent */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  /* Optional: Add a subtle gradient like the second image */
+  background: linear-gradient(135deg, #0d0c1d 0%, #2a0a3a 100%);
+}
+
+.App {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem; /* Add some padding around the content */
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1rem; /* Add some space below the header */
+}
+
+/* Styling for the new SVG logo */
+.iso-logo {
+  width: 250px; /* Adjust size as needed */
+  height: auto;
+  margin-bottom: 1.5rem; /* Space below the logo */
+  /* If the SVG colors are fixed, they might not adapt to dark mode easily,
+     but for the provided images, this style works as is. */
+}
+
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 2px solid var(--accent-color);
+}
+
+.profile-name {
+  font-size: 2.2rem; /* Slightly larger name */
+  font-weight: 700;
+  margin-top: 0.5rem;
+}
+
+.profile-bio {
+  font-size: 1.15rem; /* Slightly larger bio */
+  color: var(--text-color-secondary);
+  max-width: 500px; /* Constrain bio width */
+}
+
+/* Social Links */
+.social-links {
+  display: flex;
+  gap: 1.8rem; /* More space between social links */
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem; /* Space below social links */
+}
+
+.social-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05rem;
+  transition: color 0.2s ease;
+}
+
+.social-link:hover {
+  color: #d1baff; /* Lighter accent on hover */
+  text-decoration: underline;
+}
+
+/* Project Links Container */
+.links-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1.2rem; /* More space between project links */
+}
+
+.project-link {
+  background-color: var(--card-color);
+  border: 1px solid var(--hover-color);
+  padding: 1.2rem 1.8rem; /* More padding */
+  border-radius: 10px; /* Slightly more rounded corners */
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.project-link:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-3px); /* Subtle lift effect */
+  border-color: var(--accent-color); /* Highlight border on hover */
+}
+
+.project-link strong {
+  font-size: 1.2rem; /* Larger title */
+  font-weight: 600;
+  margin-bottom: 0.3rem; /* Space between title and subtitle */
+}
+
+.project-link span {
+  font-size: 1rem; /* Slightly larger subtitle */
+  color: var(--text-color-secondary);
+}
