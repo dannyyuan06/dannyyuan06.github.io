@@ -1,4 +1,5 @@
 import './App.css';
+import FloatingLetters from './FloatingLetters';
 
 // Data populated from your CV
 const portfolioData = {
@@ -27,19 +28,19 @@ const portfolioData = {
       url: "https://orbits-2aa96.web.app/",
     },
     {
-      title: "Graphle",
-      subtitle: "A daily graph guessing game",
-      url: "https://graphle.today/",
-    },
-    {
-      title: "Where's My Word",
-      subtitle: "A daily wordsearch game",
-      url: "https://wheresmyword.com/",
-    },
-    {
       title: "BPhO Project Paper",
       subtitle: "Read the full research paper",
       url: "https://orbits-2aa96.web.app/paper.pdf",
+    },
+    {
+      title: "Where's My Word",
+      subtitle: "A daily wordsearch game and merch store",
+      url: "https://wheresmyword.com/",
+    },
+    {
+      title: "Graphle",
+      subtitle: "A daily graph guessing game",
+      url: "https://graphle.today/",
     },
     {
       title: "The Reading Corner (GitHub)",
@@ -53,11 +54,6 @@ const portfolioData = {
 function Profile() {
   return (
     <header className="profile-header">
-      <img
-        src={"/dannyiso.svg"} // <--- Use your SVG here
-        alt="Danny ISO Logo"
-        className="iso-logo" // <--- Give it a specific class
-      />
       <h1 className="profile-name">{portfolioData.name}</h1>
       <p className="profile-bio">{portfolioData.bio}</p>
     </header>
@@ -93,20 +89,23 @@ function ProjectLink({ title, subtitle, url }) {
 
 function App() {
   return (
-    <div className="App">
-      <Profile />
-      <SocialLinks />
-      <main className="links-container">
-        {portfolioData.projects.map((project) => (
-          <ProjectLink 
-            key={project.title}
-            title={project.title} 
-            subtitle={project.subtitle} 
-            url={project.url} 
-          />
-        ))}
-      </main>
-    </div>
+    <>
+      <FloatingLetters /> {/* <--- 2. RENDER IT HERE */}
+      <div className="App"> {/* This div now acts as the main content wrapper */}
+        <Profile />
+        <SocialLinks />
+        <main className="links-container">
+          {portfolioData.projects.map((project) => (
+            <ProjectLink
+              key={project.title}
+              title={project.title}
+              subtitle={project.subtitle}
+              url={project.url}
+            />
+          ))}
+        </main>
+      </div>
+    </>
   );
 }
 

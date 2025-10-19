@@ -7,9 +7,6 @@
 
 /* Define root colors for easy themeing */
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
 
   color-scheme: light dark;
   /* Updated colors for a darker theme like Image 2 */
@@ -19,6 +16,12 @@
   --text-color-secondary: #a0a0b0;
   --hover-color: #2c2c47;
   --accent-color: #bb86fc; /* Still a nice accent */
+
+  font-family: "Murecho", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+
 }
 
 body {
@@ -141,4 +144,90 @@ body {
 .project-link span {
   font-size: 1rem; /* Slightly larger subtitle */
   color: var(--text-color-secondary);
+}
+
+/* --- NEW STYLES FOR FLOATING LETTERS --- */
+
+/* Keyframes for the idle float. 
+   We create two different ones for variety. */
+@keyframes floatUp {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-25px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes floatDown {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(25px); }
+  100% { transform: translateY(0px); }
+}
+
+/* * This container holds all the letters.
+ * It's 'fixed' to cover the whole viewport.
+ * z-index: 1 puts it *above* the body background.
+ * The 'transition' smooths the mouse-move parallax effect.
+*/
+.floating-letters-container {
+  padding: 100px;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  z-index: 1;
+  transition: transform 0.2s linear;
+  /* flex-direction: column; */
+  align-items: center;
+  justify-content: center;
+}
+
+/* * Each individual letter.
+ * 'position: absolute' allows us to place them
+ * anywhere inside the container.
+*/
+.floating-letter {
+  /* position: absolute; */
+  width: 20vw;
+  display: block;
+  user-select: none; /* Prevents text selection */
+  pointer-events: none; /* Lets mouse clicks pass through */
+}
+
+
+/* --- CSS MODIFICATIONS --- */
+
+/* * We need to give the main .App content wrapper
+ * a 'relative' position and a higher z-index
+ * to ensure it sits ON TOP of the floating letters.
+*/
+.App {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  
+  /* --- ADD THESE TWO LINES --- */
+  position: relative;
+  z-index: 2;
+}
+
+/* * This ensures the body background (z-index: 0)
+ * is behind the letters (z-index: 1), which are
+ * behind the content (z-index: 2).
+*/
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #0d0c1d 0%, #2a0a3a 100%);
+  
+  /* Add this to prevent horizontal scrollbars */
+  overflow-x: hidden; 
 }
