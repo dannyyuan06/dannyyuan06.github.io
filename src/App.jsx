@@ -5,47 +5,52 @@ import FloatingLetters from './FloatingLetters';
 const portfolioData = {
   name: "Danny Yuan",
   bio: "Computing @ Imperial College London",
-  // You can find a free icon library (like React Icons) to add these
   socials: [
     {
       name: "GitHub",
-      url: "https://github.com/dannyyuan06", // Inferred from your project repos
+      url: "https://github.com/dannyyuan06",
     },
     {
       name: "Email",
       url: "mailto:dannyyuan06@gmail.com",
     },
-    // Add a link to your hosted CV file here
-    // {
-    //   name: "View CV",
-    //   url: "/link-to-your-cv.pdf",
-    // }
   ],
   projects: [
     {
       title: "BPhO Computation Challenge",
       subtitle: "Solar system simulation (Top 5 UK)",
       url: "https://orbits-2aa96.web.app/",
+      imageUrl: "/img/bpho.jpg", // <-- MODIFIED: Add image URL
     },
     {
       title: "BPhO Project Paper",
       subtitle: "Read the full research paper",
       url: "https://orbits-2aa96.web.app/paper.pdf",
+      imageUrl: "/img/bpho.jpg", // <-- MODIFIED: Add image URL
     },
     {
       title: "Where's My Word",
       subtitle: "A daily wordsearch game and merch store",
       url: "https://wheresmyword.com/",
+      imageUrl: "/img/wmw.png", // <-- MODIFIED: Add image URL
     },
     {
       title: "Graphle",
       subtitle: "A daily graph guessing game",
       url: "https://graphle.today/",
+      imageUrl: "/img/graphle.png", // <-- MODIFIED: Add image URL
+    },
+    {
+      title: "Isometric Editor",
+      subtitle: "In progress: isometric drawing tool",
+      url: "/isometric/index.html",
+      imageUrl: "/img/isologo.svg", // <-- MODIFIED: Add image URL
     },
     {
       title: "The Reading Corner (GitHub)",
       subtitle: "Full-stack book tracking app",
       url: "https://github.com/dannyyuan06/theReadingCorner",
+      imageUrl: "/img/trc.svg", // <-- MODIFIED: Add image URL
     },
   ]
 };
@@ -78,11 +83,15 @@ function SocialLinks() {
   );
 }
 
-function ProjectLink({ title, subtitle, url }) {
+// <-- MODIFIED: Component updated to accept and display imageUrl
+function ProjectLink({ title, subtitle, url, imageUrl }) {
   return (
     <a href={url} target="_blank" rel="noopener noreferrer" className="project-link">
-      <strong>{title}</strong>
-      <span>{subtitle}</span>
+      <img src={imageUrl} alt={title} className="project-image" />
+      <div className="project-text">
+        <strong>{title}</strong>
+        <span>{subtitle}</span>
+      </div>
     </a>
   );
 }
@@ -90,8 +99,8 @@ function ProjectLink({ title, subtitle, url }) {
 function App() {
   return (
     <>
-      <FloatingLetters /> {/* <--- 2. RENDER IT HERE */}
-      <div className="App"> {/* This div now acts as the main content wrapper */}
+      <FloatingLetters />
+      <div className="App">
         <Profile />
         <SocialLinks />
         <main className="links-container">
@@ -101,6 +110,7 @@ function App() {
               title={project.title}
               subtitle={project.subtitle}
               url={project.url}
+              imageUrl={project.imageUrl} // <-- MODIFIED: Pass prop
             />
           ))}
         </main>

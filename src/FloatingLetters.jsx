@@ -20,8 +20,8 @@ function FloatingLetters() {
     const handleMouseMove = (e) => {
       // Get mouse position relative to the center of the screen
       const { clientX, clientY } = e;
-      const moveX = (clientX - window.innerWidth / 2) * -0.01; // Invert and reduce the effect
-      const moveY = (clientY - window.innerHeight / 2) * -0.01;
+      const moveX = (clientX - window.innerWidth / 2) * -0.002; // Invert and reduce the effect
+      const moveY = (clientY - window.innerHeight / 2) * -0.002;
 
       setParallaxStyle({
         transform: `translate(${moveX}px, ${moveY}px)`,

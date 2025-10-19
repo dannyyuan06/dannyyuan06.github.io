@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Isometric Canvas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/colorpicker.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="icon" type="image/x-icon" href="images/isologo.svg">
+  </head>
+  <body>
+    <div id="container">
+      <div id="menubar">
+        <img id="isologo" src="images/isologo.svg" alt="iso logo" width="36px"/>
+        <div id="menu-buttons">
+          <div id="menu-buttons-top">
+            <details>
+              <summary class="menu-button" id="menu-button-file" data="file">File</summary>
+              <div class="menu-dropdown">
+                <button class="menu-dropdown-button" data="something">Something 1</button>
+                <button class="menu-dropdown-button" data="something">Something 2</button>                
+                <button class="menu-dropdown-button" data="something">Something 3</button>
+                <button class="menu-dropdown-button" data="something">Something 4</button>
+              </div>
+            </details>
+            <details>
+              <summary class="menu-button" id="menu-button-edit" data="edit">Edit</summary>
+              <div class="menu-dropdown">
+                <button class="menu-dropdown-button" data="something">Something 1</button>
+                <button class="menu-dropdown-button" data="something">Something 2</button>                
+                <button class="menu-dropdown-button" data="something">Something 3</button>
+                <button class="menu-dropdown-button" data="something">Something 4</button>
+              </div>
+            </details>
+            <details>
+              <summary class="menu-button" id="menu-button-view" data="view">View</summary>
+              <div class="menu-dropdown">
+                <button class="menu-dropdown-button" data="something">Something 1</button>
+                <button class="menu-dropdown-button" data="something">Something 2</button>                
+                <button class="menu-dropdown-button" data="something">Something 3</button>
+                <button class="menu-dropdown-button" data="something">Something 4</button>
+              </div>
+            </details>
+            <details>
+              <summary class="menu-button" id="menu-button-insert" data="insert">Insert</summary>
+              <div class="menu-dropdown">
+                <button class="menu-dropdown-button" data="something">Something 1</button>
+                <button class="menu-dropdown-button" data="something">Something 2</button>                
+                <button class="menu-dropdown-button" data="something">Something 3</button>
+                <button class="menu-dropdown-button" data="something">Something 4</button>
+              </div>
+            </details>
+            <details>
+              <summary class="menu-button" id="menu-button-help" data="help">Help</summary>
+              <div class="menu-dropdown">
+                <button class="menu-dropdown-button" data="something">Something 1</button>
+                <button class="menu-dropdown-button" data="something">Something 2</button>                
+                <button class="menu-dropdown-button" data="something">Something 3</button>
+                <button class="menu-dropdown-button" data="something">Something 4</button>
+              </div>
+            </details>
+          </div>
+          <div id="menu-buttons-bottom">
+
+          </div>
+        </div>
+      </div>
+      <div id="hz-below-container">
+        <div id="toolbar">
+          <button class="toolbar-button" data="select"><img src="images/tools/select.svg" width="26" height="26" alt="select"/></button>
+          <button class="toolbar-button" data="line"><img src="images/tools/line.svg" width="26" height="26" alt="osuline"/></button>
+          <button class="toolbar-button" data="osuline"><img src="images/tools/osuline.svg" width="26" height="26" alt="line"/></button>
+          <button class="toolbar-button" data="scissor"><img src="images/tools/scissor.svg" width="26" height="26" alt="scissor"/></button>
+          <button class="toolbar-button" data="bezier"><img src="images/tools/bezier.svg" width="26" height="26" alt="bezier curves"/></button>
+        </div>
+        <div id="drawing-canvas">
+          <div id="background">
+            <img id="img1" src="images/D.png" />
+          </div>
+          <canvas id="isometricCanvas"></canvas>
+          <svg
+            width="550"
+            height="700"
+            viewBox="0 0 550 700"
+            id="svgCanvas"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <g id="Layer 1">
+
+            </g>
+          </svg>
+          <div id="controls">
+
+          </div>
+        </div>
+        <div id="panel-dock">
+          <div class="color-picker-container">
+            <div id="color-title" class="sidebar-title">Color</div>
+            <div id="color-picker-top">
+              <div id="rgbOutput"></div>
+              <div id="colorCanvasContainer">
+                <canvas id="colorCanvas"></canvas>
+                <div id="colorSelector"></div>
+                <div id="colorCursor"></div>
+              </div>
+              <div id="hue-slider">
+                <div id="hueSliderContainer">
+                  <input type="range" id="hueSlider" min="0" max="360" value="0" orient="vertical">
+                  <div id="hueIndicator"></div>
+              </div>
+              </div>
+            </div>
+            
+          </div>
+          <div id="other_window" style="flex: 1">
+
+          </div>
+          <div id="layers-wrapper">
+            <div id="layers-title" class="sidebar-title">
+              <span>Layers</span>
+              <span>
+                <span>Opacity</span>
+                <span><input id="opacity-input" type="number" max="100" min="0" step="1" dir="rtl"/></span>
+                <span>%</span>
+              </span>
+            </div>
+            <div id="layers-container">
+
+            </div>
+            <div id="layers-toolbar">
+              <input type="file" id="image-input" accept="image/*">
+              <img id="layer-upload-button" src="images/upload_layer.svg" alt="add-layer"/>
+              <img id="layer-add-button" src="images/add_layer.svg" alt="add-layer"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="js/script.js"></script>
+  </body>
+</html>
