@@ -52,6 +52,12 @@ const portfolioData = {
       url: "https://github.com/dannyyuan06/theReadingCorner",
       imageUrl: "/img/trc.svg", // <-- MODIFIED: Add image URL
     },
+    {
+      title: "iPad Cursor Extension",
+      subtitle: "Created an iPad cursor on Chrome",
+      url: "https://chromewebstore.google.com/detail/ipad-touch-cursor/ifgkphejaiiipekdeldjnpfnabipocam",
+      imageUrl: "/img/cursor.png", // <-- MODIFIED: Add image URL
+    },
   ]
 };
 
