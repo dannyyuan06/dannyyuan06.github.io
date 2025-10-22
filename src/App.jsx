@@ -58,6 +58,12 @@ const portfolioData = {
       url: "https://chromewebstore.google.com/detail/ipad-touch-cursor/ifgkphejaiiipekdeldjnpfnabipocam",
       imageUrl: "/img/cursor.png", // <-- MODIFIED: Add image URL
     },
+    {
+      title: "Badminton Scoreboard (GitHub)",
+      subtitle: "A real-time badminton match software",
+      url: "https://github.com/dannyyuan06/badminton",
+      imageUrl: "/img/badminton.png"
+    },
   ]
 };
 
