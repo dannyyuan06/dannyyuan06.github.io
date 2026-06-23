@@ -213,7 +213,7 @@ body {
 .project-image {
   width: 70px; /* Set image size */
   height: 70px;
-  border-radius: 8px; /* Match link border-radius */
+  border-radius: 12px; /* Match link border-radius */
   object-fit: cover; /* Ensure image covers the space */
   flex-shrink: 0; /* Prevent image from shrinking */
   background-color: white;
