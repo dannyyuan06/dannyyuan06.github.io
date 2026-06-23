@@ -13,7 +13,7 @@ const lettersConfig = [
   // Add more letters as needed
 ];
 
-function FloatingLetters() {
+function FloatingLetters({ style: containerStyle }) {
   const [parallaxStyle, setParallaxStyle] = useState({});
 
   useEffect(() => {
@@ -37,7 +37,7 @@ function FloatingLetters() {
   }, []); // Empty dependency array means this runs once on mount
 
   return (
-    <div className="floating-letters-container" style={parallaxStyle}>
+    <div className="floating-letters-container" style={{ ...containerStyle, ...parallaxStyle }}>
       {lettersConfig.map((letter) => (
         <img
           key={letter.id}

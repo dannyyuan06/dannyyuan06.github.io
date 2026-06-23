@@ -42,9 +42,15 @@ const portfolioData = {
     },
     {
       title: "Isometric Editor",
-      subtitle: "In progress: isometric drawing tool",
+      subtitle: "In progress: online isometric drawing tool",
       url: "/isometric/index.html",
       imageUrl: "/img/isologo.svg", // <-- MODIFIED: Add image URL
+    },
+    {
+      title: "IsoQube",
+      subtitle: "In progress: Download the app",
+      url: "#/isoqube",
+      imageUrl: "/img/isologo.svg",
     },
     {
       title: "The Reading Corner (GitHub)",
@@ -97,8 +103,14 @@ function SocialLinks() {
 
 // <-- MODIFIED: Component updated to accept and display imageUrl
 function ProjectLink({ title, subtitle, url, imageUrl }) {
+  const isExternal = url.startsWith('http');
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer" className="project-link">
+    <a
+      href={url}
+      target={isExternal ? "_blank" : undefined}
+      rel={isExternal ? "noopener noreferrer" : undefined}
+      className="project-link"
+    >
       <img src={imageUrl} alt={title} className="project-image" />
       <div className="project-text">
         <strong>{title}</strong>

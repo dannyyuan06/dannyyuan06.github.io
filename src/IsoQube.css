@@ -1,0 +1,140 @@
+.isoqube-page {
+  width: 100%;
+  max-width: 680px;
+  min-height: calc(100vh - 4rem);
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+}
+
+.back-link {
+  align-self: flex-start;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #5f28cc;
+}
+
+.isoqube-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.isoqube-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.isoqube-version {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+  background-color: var(--card-color);
+  border: 1px solid var(--hover-color);
+  border-radius: 999px;
+  padding: 0.2rem 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.isoqube-description {
+  font-size: 1.1rem;
+  color: var(--text-color-secondary);
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+.isoqube-downloads {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes gradient-move {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradient-rotate {
+  0%   { --gradient-angle: 0deg;   animation-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1.0); }
+  18%  { --gradient-angle: 80deg;  animation-timing-function: cubic-bezier(0.8, 0.2, 0.1, 0.9); }
+  33%  { --gradient-angle: 145deg; animation-timing-function: cubic-bezier(0.1, 0.7, 0.6, 0.3); }
+  52%  { --gradient-angle: 230deg; animation-timing-function: cubic-bezier(0.6, 0.0, 0.4, 1.0); }
+  67%  { --gradient-angle: 285deg; animation-timing-function: cubic-bezier(0.3, 0.8, 0.7, 0.2); }
+  84%  { --gradient-angle: 335deg; animation-timing-function: cubic-bezier(0.5, 0.1, 0.2, 0.9); }
+  100% { --gradient-angle: 360deg; }
+}
+
+.download-btn-primary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+  max-width: 320px;
+  padding: 1rem 2rem;
+  background: linear-gradient(var(--gradient-angle), #bb86fc, #b040fb, #b24dff, #bb86fc);
+  background-size: 400% 400%;
+  animation: gradient-rotate 32s linear infinite, gradient-move 0s ease-in-out infinite;
+  color: #0d0c1d;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  border-radius: 18px;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 0 18px rgba(187, 134, 252, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+}
+
+.download-btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 32px rgba(187, 134, 252, 0.6);
+  color: #0d0c1dc4;
+}
+
+.download-btn-label {
+  font-size: 1.1rem;
+}
+
+.download-btn-sub {
+  font-size: 0.8rem;
+  font-weight: 400;
+  opacity: 0.7;
+}
+
+.other-platform {
+  font-size: 0.9rem;
+  color: var(--text-color-secondary);
+}
+
+.secondary-download-link {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.secondary-download-link:hover {
+  color: #d1baff;
+  text-decoration: underline;
+}
