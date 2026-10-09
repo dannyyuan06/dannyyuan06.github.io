@@ -3,7 +3,15 @@ import { useEffect, useRef } from 'react';
 const INTERACTIVE_SELECTOR = 'a, button, [role="button"]';
 const INTERACTIVE_BRIDGE_DISTANCE = 24;
 const ARTWORK_CONTRAST_THRESHOLD = 62;
+const LARGE_INTERACTIVE_MIN_WIDTH = 80;
+const LARGE_INTERACTIVE_MIN_HEIGHT = 40;
+const TEXT_CURSOR_HIT_PADDING = 10;
 const artworkCanvasCache = new WeakMap();
+
+function getRubberBandOffset(pointer, center, halfSize, maximumOffset) {
+  const normalizedDistance = Math.max(-1, Math.min(1, (pointer - center) / halfSize));
+  return Math.sign(normalizedDistance) * Math.abs(normalizedDistance) ** 1.6 * maximumOffset;
+}
 
 function parseRgb(color) {
   const channels = color.match(/[\d.]+/g)?.map(Number);
@@ -124,7 +132,12 @@ function getTextCursorHeight(x, y, eventTarget) {
   range.selectNodeContents(textNode);
 
   for (const rect of range.getClientRects()) {
-    if (x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom) {
+    if (
+      x >= rect.left - TEXT_CURSOR_HIT_PADDING &&
+      x <= rect.right + TEXT_CURSOR_HIT_PADDING &&
+      y >= rect.top - TEXT_CURSOR_HIT_PADDING &&
+      y <= rect.bottom + TEXT_CURSOR_HIT_PADDING
+    ) {
       return Math.min(64, Math.max(16, rect.height + 2));
     }
   }
@@ -150,13 +163,29 @@ export default function CursorEffect() {
     let isPressed = false;
     let isBridging = false;
     let isOverText = false;
+    let isPointerInsideInteractive = false;
     let pointerPosition = { x: -30, y: -30 };
 
     const draw = () => {
+      const cursorLeft = current.x - current.width / 2;
+      const cursorTop = current.y - current.height / 2;
+      const highlightInsetX = Math.min(5, current.width / 2);
+      const highlightInsetY = Math.min(5, current.height / 2);
+      const highlightX = Math.max(
+        highlightInsetX,
+        Math.min(current.width - highlightInsetX, pointerPosition.x - cursorLeft),
+      );
+      const highlightY = Math.max(
+        highlightInsetY,
+        Math.min(current.height - highlightInsetY, pointerPosition.y - cursorTop),
+      );
+
       cursor.style.width = `${current.width}px`;
       cursor.style.height = `${current.height}px`;
       cursor.style.borderRadius = `${current.radius}px`;
-      cursor.style.transform = `translate3d(${current.x - current.width / 2}px, ${current.y - current.height / 2}px, 0)`;
+      cursor.style.setProperty('--cursor-highlight-x', `${highlightX}px`);
+      cursor.style.setProperty('--cursor-highlight-y', `${highlightY}px`);
+      cursor.style.transform = `translate3d(${cursorLeft}px, ${cursorTop}px, 0)`;
     };
 
     const applyPressedState = () => {
@@ -173,7 +202,10 @@ export default function CursorEffect() {
       if (!hoveredTarget) return;
       if (!hoveredTarget.isConnected) {
         hoveredTarget = null;
+        isPointerInsideInteractive = false;
         cursor.classList.remove('custom-cursor--interactive');
+        cursor.classList.remove('custom-cursor--large-interactive');
+        cursor.classList.remove('custom-cursor--pointer-inside');
         restingDestination = {
           ...pointerPosition,
           width: 18,
@@ -185,11 +217,37 @@ export default function CursorEffect() {
       }
 
       const rect = hoveredTarget.getBoundingClientRect();
+      const isLargeInteractive =
+        rect.width >= LARGE_INTERACTIVE_MIN_WIDTH &&
+        rect.height >= LARGE_INTERACTIVE_MIN_HEIGHT;
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      const offsetX =
+        isLargeInteractive && isPointerInsideInteractive
+          ? getRubberBandOffset(
+              pointerPosition.x,
+              centerX,
+              rect.width / 2,
+              Math.min(10, rect.width * 0.03),
+            )
+          : 0;
+      const offsetY =
+        isLargeInteractive && isPointerInsideInteractive
+          ? getRubberBandOffset(
+              pointerPosition.y,
+              centerY,
+              rect.height / 2,
+              Math.min(7, rect.height * 0.08),
+            )
+          : 0;
+      const cursorPadding = isLargeInteractive ? 15 : 10;
+
+      cursor.classList.toggle('custom-cursor--large-interactive', isLargeInteractive);
       restingDestination = {
-        x: rect.left + rect.width / 2,
-        y: rect.top + rect.height / 2,
-        width: rect.width + 10,
-        height: rect.height + 10,
+        x: centerX + offsetX,
+        y: centerY + offsetY,
+        width: rect.width + cursorPadding,
+        height: rect.height + cursorPadding,
         radius: hoveredRadius,
       };
       applyPressedState();
@@ -226,7 +284,10 @@ export default function CursorEffect() {
       hoveredTarget = null;
       isBridging = false;
       isOverText = false;
+      isPointerInsideInteractive = false;
       cursor.classList.remove('custom-cursor--interactive');
+      cursor.classList.remove('custom-cursor--large-interactive');
+      cursor.classList.remove('custom-cursor--pointer-inside');
       cursor.classList.remove('custom-cursor--text');
       restingDestination = { x, y, width: 18, height: 18, radius: 9 };
       applyPressedState();
@@ -249,7 +310,8 @@ export default function CursorEffect() {
         'custom-cursor--over-artwork',
         isOverContrastyArtwork(event.clientX, event.clientY),
       );
-      let target = event.target.closest?.(INTERACTIVE_SELECTOR);
+      const directTarget = event.target.closest?.(INTERACTIVE_SELECTOR);
+      let target = directTarget;
 
       if (!target) {
         const textHeight = getTextCursorHeight(event.clientX, event.clientY, event.target);
@@ -257,7 +319,10 @@ export default function CursorEffect() {
           hoveredTarget = null;
           isBridging = false;
           isOverText = true;
+          isPointerInsideInteractive = false;
           cursor.classList.remove('custom-cursor--interactive');
+          cursor.classList.remove('custom-cursor--large-interactive');
+          cursor.classList.remove('custom-cursor--pointer-inside');
           cursor.classList.add('custom-cursor--text');
           restingDestination = {
             x: event.clientX,
@@ -311,10 +376,12 @@ export default function CursorEffect() {
 
       hoveredTarget = target;
       isOverText = false;
+      isPointerInsideInteractive = directTarget === target;
       const targetRadius = parseFloat(getComputedStyle(target).borderTopLeftRadius) || 0;
       hoveredRadius = Math.min(30, Math.max(15, targetRadius));
       cursor.classList.remove('custom-cursor--text');
       cursor.classList.add('custom-cursor--interactive');
+      cursor.classList.toggle('custom-cursor--pointer-inside', isPointerInsideInteractive);
       readTargetBounds();
 
       if (isInitialPosition) {
@@ -359,5 +426,9 @@ export default function CursorEffect() {
     };
   }, []);
 
-  return <div ref={cursorRef} className="custom-cursor" aria-hidden="true" />;
+  return (
+    <div ref={cursorRef} className="custom-cursor" aria-hidden="true">
+      <div className="custom-cursor__highlight" />
+    </div>
+  );
 }
