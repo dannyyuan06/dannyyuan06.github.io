@@ -5,11 +5,11 @@ import { useState, useEffect } from 'react';
 // 2. Define each letter in this array.
 const lettersConfig = [
   // Example letters (replace with your image paths)
-  { id: 'd', src: '/D.svg', size: 270, initialPos: { left: '25%' }, animation: 'floatUp 12s -2s ease-in-out infinite', opacity: 0.08 },
-  { id: 'a', src: '/A.svg', size: 270, initialPos: { left: '35%' }, animation: 'floatDown 15s 0s ease-in-out infinite', opacity: 0.05 },
-  { id: 'n', src: '/N1.svg', size: 270,  initialPos: { left: '45%' }, animation: 'floatUp 10s -5s ease-in-out infinite', opacity: 0.07 },
-  { id: 'y', src: '/N2.svg', size: 270, initialPos: { left: '55%' }, animation: 'floatDown 18s -10s ease-in-out infinite', opacity: 0.06 },
-  { id: 'i', src: '/Y.svg', size: 270,  initialPos: { left: '65%' }, animation: 'floatUp 13s -8s ease-in-out infinite', opacity: 0.08 },
+  { id: 'd', src: '/D.svg', size: 270, initialPos: { left: '25%' }, animation: 'floatUp 12s -2s ease-in-out infinite', opacity: 0.7 },
+  { id: 'a', src: '/A.svg', size: 270, initialPos: { left: '35%' }, animation: 'floatDown 15s 0s ease-in-out infinite', opacity: 0.7 },
+  { id: 'n', src: '/N1.svg', size: 270,  initialPos: { left: '45%' }, animation: 'floatUp 10s -5s ease-in-out infinite', opacity: 0.7 },
+  { id: 'y', src: '/N2.svg', size: 270, initialPos: { left: '55%' }, animation: 'floatDown 18s -10s ease-in-out infinite', opacity: 0.7 },
+  { id: 'i', src: '/Y.svg', size: 270,  initialPos: { left: '65%' }, animation: 'floatUp 13s -8s ease-in-out infinite', opacity: 0.7 },
   // Add more letters as needed
 ];
 

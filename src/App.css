@@ -10,12 +10,14 @@
 
   color-scheme: light dark;
   /* Updated colors for a darker theme like Image 2 */
-  --bg-color: #0d0c1d; /* A dark, slightly purple-blue background */
-  --card-color: #1a1a2e; /* Darker card for contrast */
-  --text-color: #e0e0e0;
-  --text-color-secondary: #a0a0b0;
-  --hover-color: #2c2c47;
-  --accent-color: #bb86fc; /* Still a nice accent */
+  --bg-color: #FFFAD3; /* A dark, slightly purple-blue background */
+  --card-color: #FFDBB0; /* Darker card for contrast */
+  --text-color: #4d4d4d;
+  --text-color-secondary: #676767;
+  --text-color-accent: #444;
+  --hover-color: #FFCCB8;
+  --accent-color: #FFB1B1; /* Still a nice accent */
+  --text-bg-color: #000;
 
   font-family: "Murecho", sans-serif;
   font-optical-sizing: auto;
@@ -26,13 +28,11 @@
 
 body {
   background-color: var(--bg-color);
-  color: var(--text-color);
+  color: var(--text-bg-color);
   display: flex;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem 1rem;
-  /* Optional: Add a subtle gradient like the second image */
-  background: linear-gradient(135deg, #0d0c1d 0%, #2a0a3a 100%);
     overflow-x: hidden; 
 }
 
@@ -98,7 +98,7 @@ body {
 }
 
 .social-link {
-  color: var(--accent-color);
+  color: var(--text-color-accent);
   text-decoration: none;
   font-weight: 500;
   font-size: 1.05rem;
@@ -106,7 +106,7 @@ body {
 }
 
 .social-link:hover {
-  color: #d1baff; /* Lighter accent on hover */
+  color: var(--text-color-accent); /* Lighter accent on hover */
   text-decoration: underline;
 }
 
@@ -120,7 +120,7 @@ body {
 
 .project-link {
   background-color: var(--card-color);
-  border: 1px solid var(--hover-color);
+  border: 3px solid var(--accent-color);
   padding: 1rem 1.2rem; /* Adjusted padding */
   border-radius: 20px;
   text-decoration: none;
@@ -131,14 +131,15 @@ body {
   align-items: center; /* Vertically center image and text */
   text-align: left; /* Changed from center */
   gap: 1.2rem; /* Add gap between image and text */
+  box-shadow: 0px 2px 15px rgba(89, 89, 89, 0.15);
 
-  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .project-link:hover {
   background-color: var(--hover-color);
-  transform: translateY(-3px); /* Subtle lift effect */
   border-color: var(--accent-color); /* Highlight border on hover */
+  color: var(--text-color-accent);
 }
 
 .project-link strong {
@@ -198,14 +199,6 @@ body {
   display: block;
   user-select: none; /* Prevents text selection */
   pointer-events: none; /* Lets mouse clicks pass through */
-}
-
-
-.project-link:hover {
-  background-color: var(--hover-color);
-  transform: translateY(-3px);
-  border-color: var(--accent-color);
-  color: var(--accent-color);
 }
 
 /* --- ADD THESE NEW RULES --- */
