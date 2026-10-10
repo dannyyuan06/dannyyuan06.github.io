@@ -7,7 +7,7 @@ $ErrorActionPreference = 'Stop'
 $websiteRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $projectRoot = (Resolve-Path -LiteralPath $IsoQubeProject).Path
 $buildRoot = Join-Path $projectRoot 'build\web'
-$targetRoot = [System.IO.Path]::GetFullPath((Join-Path $websiteRoot 'public\isoqube-app'))
+$targetRoot = [System.IO.Path]::GetFullPath((Join-Path $websiteRoot 'public\isoqube'))
 $expectedTargetParent = [System.IO.Path]::GetFullPath((Join-Path $websiteRoot 'public'))
 
 if ([System.IO.Path]::GetDirectoryName($targetRoot) -ne $expectedTargetParent) {
@@ -16,7 +16,7 @@ if ([System.IO.Path]::GetDirectoryName($targetRoot) -ne $expectedTargetParent) {
 
 Push-Location $projectRoot
 try {
-  flutter build web --release --base-href /isoqube-app/ --pwa-strategy=none
+  flutter build web --release --base-href /isoqube/ --pwa-strategy=none
   if ($LASTEXITCODE -ne 0) {
     throw "Flutter web build failed with exit code $LASTEXITCODE"
   }

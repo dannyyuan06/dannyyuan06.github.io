@@ -3,7 +3,7 @@
 
 ## Updating the IsoQube web app
 
-The optimized Flutter web build is served from `/isoqube-app/`. After changing
+The optimized Flutter web build is served from `/isoqube/`. After changing
 the sibling `Other/iso/isonative` project, refresh it and rebuild the Pages
 output with:
 

@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_PREFIX = 'isoqube-app-';
+const CACHE_PREFIX = 'isoqube-';
 const CACHE_NAME = `${CACHE_PREFIX}v2`;
 const APP_SHELL = [
   './',

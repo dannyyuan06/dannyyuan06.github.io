@@ -45,7 +45,7 @@ export default function IsoQube() {
           </header>
 
           <section className="isoqube-downloads">
-            <a href="/isoqube-app/" className="web-app-button">
+            <a href="/isoqube/" className="web-app-button">
               <span className="download-btn-label">Open the web app</span>
               <span className="download-btn-sub">No installation required</span>
             </a>
