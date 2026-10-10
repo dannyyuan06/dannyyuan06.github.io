@@ -11,6 +11,10 @@ const portfolioData = {
       url: "https://github.com/dannyyuan06",
     },
     {
+      name: "LinkedIn",
+      url: "https://www.linkedin.com/in/danny-yuan-dy",
+    },
+    {
       name: "Email",
       url: "mailto:dannyyuan06@gmail.com",
     },
