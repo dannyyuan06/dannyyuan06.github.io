@@ -33,29 +33,38 @@ export default function IsoQube() {
     <>
       <FloatingLetters />
       <div className="isoqube-page">
-        <Link to="/" className="back-link">← Back</Link>
+        <div className="isoqube-card" data-cursor-contrast-surface>
+          <Link to="/" className="back-link">← Back</Link>
 
-        <header className="isoqube-header">
-          <h1 className="isoqube-title">IsoQube</h1>
-          <span className="isoqube-version">v2.0.0</span>
-          <p className="isoqube-description">
-            Made a tool to make the letters you see in the background of the website because illustrator was so annoying for this.
-          </p>
-        </header>
+          <header className="isoqube-header">
+            <h1 className="isoqube-title">IsoQube</h1>
+            <span className="isoqube-version">v2.0.0</span>
+            <p className="isoqube-description">
+              Made a tool to make the letters you see in the background of the website because illustrator was so annoying for this.
+            </p>
+          </header>
 
-        <section className="isoqube-downloads">
-          <a href={primary.url} className="download-btn-primary">
-            <span className="download-btn-label">{primary.label}</span>
-            <span className="download-btn-sub">{primary.sublabel}</span>
-          </a>
-
-          <p className="other-platform">
-            Also available for{' '}
-            <a href={secondary.url} className="secondary-download-link">
-              {secondary.label.replace('Download for ', '')} ({secondary.sublabel.split('  •  ')[0]})
+          <section className="isoqube-downloads">
+            <a href="/isoqube-app/" className="web-app-button">
+              <span className="download-btn-label">Open the web app</span>
+              <span className="download-btn-sub">No installation required</span>
             </a>
-          </p>
-        </section>
+
+            <span className="download-divider">or download the desktop app</span>
+
+            <a href={primary.url} className="download-btn-primary">
+              <span className="download-btn-label">{primary.label}</span>
+              <span className="download-btn-sub">{primary.sublabel}</span>
+            </a>
+
+            <p className="other-platform">
+              Also available for{' '}
+              <a href={secondary.url} className="secondary-download-link">
+                {secondary.label.replace('Download for ', '')} ({secondary.sublabel.split('  •  ')[0]})
+              </a>
+            </p>
+          </section>
+        </div>
       </div>
     </>
   );

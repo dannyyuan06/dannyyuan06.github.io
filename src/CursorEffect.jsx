@@ -306,9 +306,10 @@ export default function CursorEffect() {
 
       pointerPosition = { x: event.clientX, y: event.clientY };
       cursor.classList.add('custom-cursor--visible');
+      const isInsideContrastSurface = event.target.closest?.('[data-cursor-contrast-surface]');
       cursor.classList.toggle(
         'custom-cursor--over-artwork',
-        isOverContrastyArtwork(event.clientX, event.clientY),
+        !isInsideContrastSurface && isOverContrastyArtwork(event.clientX, event.clientY),
       );
       const directTarget = event.target.closest?.(INTERACTIVE_SELECTOR);
       let target = directTarget;

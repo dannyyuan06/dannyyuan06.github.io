@@ -43,7 +43,7 @@ const portfolioData = {
     {
       title: "Isometric Editor",
       subtitle: "In progress: online isometric drawing tool",
-      url: "/isometric/index.html",
+      url: "/isoqube-app/",
       imageUrl: "/img/isologo.svg", // <-- MODIFIED: Add image URL
     },
     {
